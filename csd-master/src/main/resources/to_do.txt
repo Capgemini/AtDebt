@@ -1,0 +1,14 @@
+how does findbugs work?
+how does checkstyle work?
+how does pmd work?
+ i.e. what are the available plugins and targets?
+	  what are the parameters?
+	  what is the workflow?
+	  what is the output file format?
+How do they integrate with maven?
+How do they integrate with the build lifecycle?
+What do the maven reports work?
+How do they integrate with mvn:site?
+
+Figure out how to do process control with annotation processor without showing a stack trace
+The maven plugin is not showing the processor output...

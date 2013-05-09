@@ -1,0 +1,109 @@
+Change log for csd-utils.jar
+Project home page: http://kenai.com/projects/csdutilities/pages/Home
+
+  Version 0.1.0
+----------------------------------------------------------------------
+* @Debt annotation to track and measure technical debt in source code.
+* Ability to specify a description, count and debtor for @Debt
+* Ability to set a threshold for @Debt count, which if exceeded causes
+  build to fail.
+* Limitations of Java 6 do not allow for processing of local variables
+  annotated with @Debt.
+
+  Version 0.2.0
+----------------------------------------------------------------------
+* Introduction of com.capgemini.csd.auditable package to be used in
+  conjunction with Spring 3 configured applications.
+* Creation of @Auditable annotation to mark methods as
+  being auditable when AuditableEntity is a method parameter.
+* Creation of AuditableEntity interface to be used in conjunction with
+  @Auditable.
+* Creation of @Auditable.Statement to provide a simple audit mechanism
+  for methods. This will log statements against a method.
+* Creation of Auditor AOP aspect to intercept @Auditable annotations.
+* AuditableMessager interface to process audit messages once
+  intercepted.
+* Creation of @Auditable.ReturnEntity to audit methods that return
+  objects of type AuditableEntity.
+
+  Version 0.2.1
+----------------------------------------------------------------------
+* Renamed com.capgemini.csd.auditable.AuditableEntity.getUserId() to
+  com.capgemini.csd.auditable.AuditableEntity.getCallerId().
+* Renamed com.capgemini.csd.auditable.Audit.getUserId() to
+  com.capgemini.csd.auditable.Audit.getCallerId().
+* Renamed com.capgemini.csd.auditable.Audit.setUserId(String) to
+  com.capgemini.csd.auditable.Audit.setCallerId(String).
+
+  Version 0.2.2
+----------------------------------------------------------------------
+* @Debt option (com.capgemini.csd.debt.scan) to only scan the
+  specified package.
+* DebtProcessor overrides getOptions() to suppress compiler
+  diagnostics warning about unused processor options.
+
+  Version 0.3.3
+----------------------------------------------------------------------
+* Changes to allow better use within Maven.
+* Ability to process annotations within sub packages (com.capgemini.
+  csd.debt.scan argument does a 'starts with' match).
+  
+  Version 0.4.0
+----------------------------------------------------------------------
+* Removed debtor attribute from @Debt annotation (If you need to know 
+  who identified the debt you can look in version control).
+* Changed logging to only affect com.capgemini.csd.debt.processor and 
+  com.capgemini.csd.debt.auditable packages. 
+* Introduced @Debts annotation to allow an element to have multiple 
+  instances of @Debt recorded against it.
+
+  Version 0.5.0
+----------------------------------------------------------------------
+ * Added LGPLv2.0 licence information to the header of all files.
+ * Introduced XML debt reports via the new DebtRecorder class.
+   (CSDUTILITIES-19)
+ * Removed Log4J from all projects.
+ * Introduced new Maven 2 plugin, simplifying use of the @Debt
+   Annotation Procesor in Maven builds.
+ * Simplified the display of reported debt in compilation output.
+ * General tidy up of code (formatting, unused imports, local
+   variables etc.
+
+  Version 0.5.1
+----------------------------------------------------------------------
+ * Enabled setting the Debt report directory and filename via command
+   line arguments. (CSDUTILITIES-23)
+ * Removed the implementation which resulted in a stacktrace being
+   shown whenever the debt threshold is breached. (CSDUTILITIES-24)
+ * Added a warning threshold capability (in addition to the existing
+   fail threshold). (CSDUTILITIES-25)
+ * Made the output of a Debt report to file configurable.
+   (CSDUTILITIES-31)
+ * Removed System.out.println's from DebtProcessor.java.
+
+  Version 0.6.0
+----------------------------------------------------------------------
+ * Fixed: Method Names with Generics don't have the Angle Brackets 
+   Escaped (CSDUTILITIES-34)
+ * Moved the Auditable Spring Aspect out to it's own Maven2 project 
+   and renamed the "csd-utilities" project to "csd-debt-annotation".
+ * Added developer, SCM, and jar signing elements to the master 
+   project POM in anticipation of putting the CSD Utilities up on a 
+   public Maven2 repository. (CSDUTILITIES-32)
+ * Refactored the various private *Record classes to extend an abstract 
+   SkeletonRecord class to reduce code duplication.
+ * Removed the DebtThresholdExceeded class.
+ * Added more unit tests for the DebtProcessor using mockito. 
+   (CSDUTILITIES-21)
+
+  Version 0.6.1
+----------------------------------------------------------------------
+ * Fixed: Same packages and classes were getting recorded multiple 
+   times.
+ * Fixed: Empty src directories stopped the maven plugin from running. 
+
+  Version 0.7.0
+----------------------------------------------------------------------
+ * Fixed: Value of desc Attribute with Escaped Quotes Breaks XML 
+   Output of Annotation Processor. (CSDUTILITIES-36)
+ * Fixed: Refactoring across the piece (CSDUTILITIES-38)

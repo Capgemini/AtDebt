@@ -1,0 +1,253 @@
+<plugin>
+  <description>Maven 2 Plugin for running the CSD @Debt Annotation Processor.</description>
+  <groupId>com.capgemini.csd</groupId>
+  <artifactId>debt</artifactId>
+  <version>0.7.0</version>
+  <goalPrefix>debt</goalPrefix>
+  <isolatedRealm>false</isolatedRealm>
+  <inheritedByDefault>true</inheritedByDefault>
+  <mojos>
+    <mojo>
+      <goal>debt</goal>
+      <description> Goal which analyses the @Debt annotations in a codebase and creates a report
+ which is (currently) written to file.
+
+ @author Andrew Harmel-Law
+ @email andrew@harmel-law.com
+</description>
+      <requiresDirectInvocation>false</requiresDirectInvocation>
+      <requiresProject>true</requiresProject>
+      <requiresReports>false</requiresReports>
+      <aggregator>false</aggregator>
+      <requiresOnline>false</requiresOnline>
+      <inheritedByDefault>true</inheritedByDefault>
+      <phase>post-compile</phase>
+      <implementation>com.capgemini.csd.utils.maven.plugin.debt.DebtMojo</implementation>
+      <language>java</language>
+      <instantiationStrategy>per-lookup</instantiationStrategy>
+      <executionStrategy>once-per-session</executionStrategy>
+      <parameters>
+        <parameter>
+          <name>scanPackage</name>
+          <type>java.lang.String</type>
+          <required>true</required>
+          <editable>true</editable>
+          <description>Package to scan for @Debt annotations. (Includes sub-packages)</description>
+        </parameter>
+        <parameter>
+          <name>warningThreshold</name>
+          <type>java.lang.Integer</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Sets the threshold when a warning will be shown about debt levels..</description>
+        </parameter>
+        <parameter>
+          <name>failThreshold</name>
+          <type>java.lang.Integer</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Sets the threshold when an error will be shown about debt levels and the build failed.</description>
+        </parameter>
+        <parameter>
+          <name>reportDirectory</name>
+          <type>java.lang.String</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Directory to output the report. Defaults to target/site/debt.</description>
+        </parameter>
+        <parameter>
+          <name>reportFileName</name>
+          <type>java.lang.String</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>File to write the debt report to. Defaults to debt.xml.</description>
+        </parameter>
+        <parameter>
+          <name>sourceDirectory</name>
+          <type>java.io.File</type>
+          <required>false</required>
+          <editable>true</editable>
+          <description>Directory containing the source to be analysed. Defaults to src</description>
+        </parameter>
+        <parameter>
+          <name>failOnCompileError</name>
+          <type>java.lang.Boolean</type>
+          <required>true</required>
+          <editable>true</editable>
+          <description>Indicates whether the build will continue even if there are compilation errors. Defaults to true.</description>
+        </parameter>
+        <parameter>
+          <name>project</name>
+          <type>org.apache.maven.project.MavenProject</type>
+          <required>false</required>
+          <editable>false</editable>
+          <description></description>
+        </parameter>
+        <parameter>
+          <name>pluginArtifacts</name>
+          <type>java.util.List&lt;org.apache.maven.artifact.Artifact&gt;</type>
+          <required>false</required>
+          <editable>false</editable>
+          <description></description>
+        </parameter>
+      </parameters>
+      <configuration>
+        <project implementation="org.apache.maven.project.MavenProject" default-value="${project}"/>
+        <failOnCompileError implementation="java.lang.Boolean" default-value="true">${debt.failOnCompileError}</failOnCompileError>
+        <scanPackage implementation="java.lang.String">${debt.scanPackage}</scanPackage>
+        <reportFileName implementation="java.lang.String" default-value="debt.xml">${debt.reportFileName}</reportFileName>
+        <warningThreshold implementation="java.lang.Integer" default-value="-1">${debt.warningThreshold}</warningThreshold>
+        <reportDirectory implementation="java.lang.String" default-value="${project.build.directory}/site/debt/">${debt.reportDirectory}</reportDirectory>
+        <sourceDirectory implementation="java.io.File" default-value="${project.build.sourceDirectory}">${debt.sourceDirectory}</sourceDirectory>
+        <failThreshold implementation="java.lang.Integer" default-value="-1">${debt.failThreshold}</failThreshold>
+        <pluginArtifacts implementation="java.util.List&lt;org.apache.maven.artifact.Artifact&gt;" default-value="${plugin.artifacts}"/>
+      </configuration>
+    </mojo>
+  </mojos>
+  <dependencies>
+    <dependency>
+      <groupId>com.capgemini.csd</groupId>
+      <artifactId>csd-debt-annotation</artifactId>
+      <type>jar</type>
+      <version>0.7.0</version>
+    </dependency>
+    <dependency>
+      <groupId>xerces</groupId>
+      <artifactId>xercesImpl</artifactId>
+      <type>jar</type>
+      <version>2.9.1</version>
+    </dependency>
+    <dependency>
+      <groupId>xml-apis</groupId>
+      <artifactId>xml-apis</artifactId>
+      <type>jar</type>
+      <version>1.3.04</version>
+    </dependency>
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+      <type>jar</type>
+      <version>2.7.1</version>
+    </dependency>
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>serializer</artifactId>
+      <type>jar</type>
+      <version>2.7.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jfrog.maven.annomojo</groupId>
+      <artifactId>maven-plugin-tools-anno</artifactId>
+      <type>jar</type>
+      <version>1.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jfrog.maven.annomojo</groupId>
+      <artifactId>maven-plugin-anno</artifactId>
+      <type>jar</type>
+      <version>1.3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-tools-api</artifactId>
+      <type>jar</type>
+      <version>2.0.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <type>jar</type>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-settings</artifactId>
+      <type>jar</type>
+      <version>2.0.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+      <type>jar</type>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <type>jar</type>
+      <version>1.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-container-default</artifactId>
+      <type>jar</type>
+      <version>1.0-alpha-9-stable-1</version>
+    </dependency>
+    <dependency>
+      <groupId>classworlds</groupId>
+      <artifactId>classworlds</artifactId>
+      <type>jar</type>
+      <version>1.1-alpha-2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-profile</artifactId>
+      <type>jar</type>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact-manager</artifactId>
+      <type>jar</type>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-repository-metadata</artifactId>
+      <type>jar</type>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-artifact</artifactId>
+      <type>jar</type>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.wagon</groupId>
+      <artifactId>wagon-provider-api</artifactId>
+      <type>jar</type>
+      <version>1.0-beta-6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-descriptor</artifactId>
+      <type>jar</type>
+      <version>2.0.5</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <type>jar</type>
+      <version>2.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-interpolation</artifactId>
+      <type>jar</type>
+      <version>1.11</version>
+    </dependency>
+    <dependency>
+      <groupId>backport-util-concurrent</groupId>
+      <artifactId>backport-util-concurrent</artifactId>
+      <type>jar</type>
+      <version>3.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-registry</artifactId>
+      <type>jar</type>
+      <version>2.2.1</version>
+    </dependency>
+  </dependencies>
+</plugin>

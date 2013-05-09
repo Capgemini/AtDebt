@@ -1,0 +1,172 @@
+<!--
+  ~ @Debt Copyright (C) 2010 Andrew Harmel-Law
+  ~
+  ~ This library is free software; you can redistribute it and/or modify it under
+  ~ the terms of the GNU Lesser General Public License as published by the Free
+  ~ Software Foundation; either version 2.1 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This library is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  ~ FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+  ~ details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with this library; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+  ~
+  ~ To contact the development team, please refer to the project site at:
+  ~
+  ~   http://kenai.com/projects/csdutilities
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.capgemini.csd</groupId>
+    <artifactId>csd-master</artifactId>
+    <name>CSD Utilities Master POM</name>
+    <version>0.7.0</version>
+    <packaging>pom</packaging>
+    <description>Incredibly Useful Utilities for the Java Software Development Professional - Master POM.</description>
+    <url>http://kenai.com/projects/csdutilities</url>
+
+    <licenses>
+        <license>
+            <name>LGPLv2.1</name>
+            <url>http://www.opensource.org/licenses/lgpl-2.1.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>3.0.4.RELEASE</spring.version>
+    </properties>
+    
+    <developers>
+        <developer>
+            <id>al94781</id>
+            <name>Andrew Harmel-Law</name>
+            <email>andrew@harmel-law.com</email>
+            <organization>Capgemini UK Plc</organization>
+            <organizationUrl>http://www.capgemini.com</organizationUrl>
+            <roles>
+                <role>Originator</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+            <url>http://the-music-of-time.blogspot.com</url>
+        </developer>
+        <developer>
+            <id>wr1742</id>
+            <name>Wadud Ruf</name>
+            <email>wadud.ruf@capgemini.com</email>
+            <organization>Capgemini UK Plc</organization>
+            <organizationUrl>http://www.capgemini.com</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+            <url></url>
+        </developer>
+        <developer>
+            <id>projectmnmt</id>
+            <name>Rob Horn</name>
+            <email>robert.horn@capgemini.com</email>
+            <organization>Capgemini UK Plc</organization>
+            <organizationUrl>http://www.capgemini.com</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+            <url></url>
+        </developer>
+    </developers>
+        
+    <modules>
+        <module>../csd-debt-annotation</module>
+        <module>../csd-auditable</module>
+        <module>../maven-csd-debt-plugin</module>
+        <module>../hudson-csd-debt-plugin</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8</version>
+            <scope>test</scope>
+        </dependency -->
+
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>2.5.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <showDeprecated>true</showDeprecated>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+            	    <!-- Disable annotation processors during normal compilation -->
+                    <compilerArgument>-proc:none</compilerArgument>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+<!--            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
+        </plugins>
+    </build>
+    
+    <scm>
+        <url>http://kenai.com/projects/csdutilities/sources/svn/show/trunk</url>
+        <connection>scm:svn:https://svn.kenai.com/svn/csdutilities~svn/trunk</connection>
+        <developerConnection>scm:svn:https://svn.kenai.com/svn/csdutilities~svn/trunk</developerConnection>
+    </scm>
+    
+    <repositories>
+        <repository>
+            <id>repo2</id>
+            <name>Maven Repo 2 Repository</name>
+            <url>http://repo2.maven.org/maven2</url>
+        </repository>
+    </repositories>
+    
+</project>

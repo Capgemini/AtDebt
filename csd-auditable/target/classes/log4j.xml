@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<appender name="mvn-console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+<!--			<param name="ConversionPattern" value="%d [%t] %5p [%c{1}.%M():Line %L] - %m%n" />-->
+			<param name="ConversionPattern" value="[%1p] %m%n" />
+		</layout>
+	</appender>
+            
+	<logger name="com.capgemini.csd.debt.processor">
+        <level value="info"/>
+        <appender-ref ref="mvn-console"/>
+    </logger>
+    
+    <logger name="com.capgemini.csd.auditable">
+        <level value="info"/>
+        <appender-ref ref="mvn-console"/>
+    </logger>
+      
+<!--	<root>-->
+<!--		<priority value="DEBUG" />-->
+<!--		<appender-ref ref="console" />-->
+<!--	</root>-->
+
+</log4j:configuration>

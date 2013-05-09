@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>CUSTOM-pmd:pmd</actionName>
+        <displayName>pmd:pmd</displayName>
+        <goals>
+            <goal>pmd:pmd</goal>
+        </goals>
+    </action>
+</actions>

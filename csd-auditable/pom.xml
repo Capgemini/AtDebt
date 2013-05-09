@@ -1,0 +1,89 @@
+<!--
+  ~ @Debt Copyright (C) 2010 Andrew Harmel-Law
+  ~
+  ~ This library is free software; you can redistribute it and/or modify it under
+  ~ the terms of the GNU Lesser General Public License as published by the Free
+  ~ Software Foundation; either version 2.1 of the License, or (at your option)
+  ~ any later version.
+  ~
+  ~ This library is distributed in the hope that it will be useful, but WITHOUT
+  ~ ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  ~ FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+  ~ details.
+  ~
+  ~ You should have received a copy of the GNU Lesser General Public License
+  ~ along with this library; if not, write to the Free Software Foundation, Inc.,
+  ~ 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+  ~
+  ~ To contact the development team, please refer to the project site at:
+  ~
+  ~   http://kenai.com/projects/csdutilities
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.capgemini.csd</groupId>
+        <artifactId>csd-master</artifactId>
+        <version>0.7.0</version>
+        <relativePath>../csd-master/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>csd-auditable</artifactId>
+    <name>CSD Auditable Spring Aspect</name>
+    <description>Incredibly Useful Utilities for the Java Software Development Professional - An Auditable Aspect</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.capgemini.csd</groupId>
+            <artifactId>csd-debt-annotation</artifactId>
+            <version>0.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.5.4</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.6.9</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
