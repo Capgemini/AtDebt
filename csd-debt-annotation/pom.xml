@@ -24,28 +24,84 @@
 	     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>com.capgemini.csd</groupId>
-        <artifactId>csd-master</artifactId>
-        <version>0.7.0</version>
-        <relativePath>../csd-master/pom.xml</relativePath>
-    </parent>
-
+	<groupId>com.capgemini.csd</groupId>
     <artifactId>csd-debt-annotation</artifactId>
+	<version>0.7.1</version>
     <name>CSD @Debt Annotation</name>
     <description>Incredibly Useful Utilities for the Java Software Development Professional - @Debt Annotation and Processor</description>
+    <url>https://github.com/andrewharmellaw/AtDebt</url>
+	
+	<licenses>
+        <license>
+            <name>LGPLv2.1</name>
+            <url>http://www.opensource.org/licenses/lgpl-2.1.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>3.0.4.RELEASE</spring.version>
+    </properties>
     
+    <developers>
+        <developer>
+            <id>al94781</id>
+            <name>Andrew Harmel-Law</name>
+            <email>andrew@harmel-law.com</email>
+            <organization>Capgemini UK Plc</organization>
+            <organizationUrl>http://www.capgemini.com</organizationUrl>
+            <roles>
+                <role>Originator</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+            <url>http://the-music-of-time.blogspot.com</url>
+        </developer>
+        <developer>
+            <id>wr1742</id>
+            <name>Wadud Ruf</name>
+            <email>wadud.ruf@capgemini.com</email>
+            <organization>Capgemini UK Plc</organization>
+            <organizationUrl>http://www.capgemini.com</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+            <url></url>
+        </developer>
+        <developer>
+            <id>projectmnmt</id>
+            <name>Rob Horn</name>
+            <email>robert.horn@capgemini.com</email>
+            <organization>Capgemini UK Plc</organization>
+            <organizationUrl>http://www.capgemini.com</organizationUrl>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>0</timezone>
+            <url></url>
+        </developer>
+    </developers>
+	
+	
     <dependencies>
+		<dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
-            <version>1.8.5</version>
+            <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
 	        <groupId>xmlunit</groupId>
 	        <artifactId>xmlunit</artifactId>
-	        <version>1.3</version>
+	        <version>1.4</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -60,4 +116,32 @@
         </dependency>
     </dependencies>
 
+	<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <showDeprecated>true</showDeprecated>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+            	    <!-- Disable annotation processors during normal compilation -->
+                    <compilerArgument>-proc:none</compilerArgument>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+	
 </project>
